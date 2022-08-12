@@ -1,0 +1,336 @@
+### ---------------------------TEST DB
+POST  http://localhost:3000/users/employers/test
+Content-Type: application/json
+
+[
+    {
+        "email": "thaicorp@gmail.com",
+        "password": "thai",
+        "fullname": "thai's corp",
+        "organization": "thaicorp",
+        "location": {
+            "address": "1000 N 4th St",
+            "city": "Fairfield",
+            "state": "IA",
+            "country": "USA"
+        }
+    },
+    {
+        "email": "nguyencorp@gmail.com",
+        "password": "nguyen",
+        "fullname": "nguyen's corp",
+        "organization": "nguyencorp",
+        "location": {
+            "address": "1001 N 4th St",
+            "city": "Fairfield",
+            "state": "IA",
+            "country": "USA"
+        }
+    },
+    {
+        "email": "tancorp@gmail.com",
+        "password": "tan",
+        "fullname": "tan's corp",
+        "organization": "tancorp",
+        "location": {
+            "address": "1002 N 4th St",
+            "city": "Fairfield",
+            "state": "IA",
+            "country": "USA"
+        }
+    }
+]
+
+###
+POST  http://localhost:3000/users/seekers/test
+Content-Type: application/json
+
+[
+    {
+        "email": "phat@gmail.com",
+        "password": "123",
+        "fullname": "Phat Nguyen",
+        "resume": "/abc/def/seeker1.pdf",      
+        "education": "Master of computer science",  
+        "skill_set": ["Java", "Nodejs", "Angular"],
+        "yoe": "12",
+        "status": "active"
+    },
+    {
+        "email": "seeker2@gmail.com",
+        "password": "seeker2",
+        "fullname": "seeker2",
+        "resume": "/abc/def/seeker2.pdf",      
+        "education": "Master of computer science",  
+        "skill_set": ["cobol","jcl", "nodejs", "angular"],
+        "yoe": "12",
+        "status": "active"
+    }
+]
+
+###
+POST  http://localhost:3000/jobs/test
+Content-Type: application/json
+
+[
+    {
+        "title": "java developer",
+        "description": "senior java developer",
+        "skills": ["Java", "Spring", "OOP"],
+        "job_type": "full-time",
+        "location": {
+            "address": "1000 N 4th St",
+            "city": "Fairfield",
+            "state": "IA",
+            "country": "USA"
+        },
+        "created_by": "62edccf860029fae36835609",
+        "employer": {
+            "_id": "62edccf860029fae36835609",
+            "email": "thaicorp@gmail.com",
+            "fullname": "thai's corp",
+            "organization": "thaicorp"
+        },
+        "applied_by": [
+            {
+                "_id": "62edcd5f0a4020bb57ff0009",
+                "email": "seeker1@gmail.com",
+                "fullname": "seeker1updated",
+                "resume": "/abc/def/seeker1.pdf",
+                "education": "Master of computer science",      
+                "skill_set": ["Java", "Nodejs", "Angular"],
+                "yoe": "12",
+                "status": "submited"
+            },
+            {
+                "_id": "62edcd5f0a4020bb57ff000d",
+                "email": "seeker2@gmail.com",
+                "fullname": "seeker2",
+                "resume": "/abc/def/seeker2.pdf",      
+                "education": "Master of computer science",  
+                "skill_set": ["Cobol", "JCL", "Nodejs", "Angular"],
+                "yoe": "12",
+                "status": "submited"
+            }
+        ]
+    },
+        {
+        "title": "cobol developer",
+        "description": "senior cobol developer",
+        "skills": ["Cobol", "JCL", "Java"],
+        "job_type": "full-time",
+        "location": {
+            "address": "1001 N 4th St",
+            "city": "Fairfield",
+            "state": "IA",
+            "country": "USA"
+        },
+        "created_by": "62edccf860029fae36835609",
+        "employer": {
+            "_id": "62edccf860029fae36835609",
+            "email": "thaicorp@gmail.com",
+            "fullname": "thai's corp",
+            "organization": "thaicorp"
+        },
+        "applied_by": [
+            {
+                "_id": "62edcd5f0a4020bb57ff0009",
+                "email": "seeker1@gmail.com",
+                "fullname": "seeker1updated",
+                "resume": "/abc/def/seeker1.pdf",
+                "education": "Master of computer science",      
+                "skill_set": ["java", "spring", "OOP"],
+                "yoe": "12",
+                "status": "submited"
+            },
+            {
+                "_id": "62edcd5f0a4020bb57ff000d",
+                "email": "seeker2@gmail.com",
+                "fullname": "seeker2",
+                "resume": "/abc/def/seeker2.pdf",      
+                "education": "Master of computer science",  
+                "skill_set": ["Cobol", "JCL", "Nodejs", "Angular"],
+                "yoe": "12",
+                "status": "submited"
+            }
+        ]
+    }
+]
+
+
+
+
+### ---------------------------EMPLOYER
+GET http://localhost:3000/users/employers/62edaa45b56a850c2ece2841
+
+###
+POST  http://localhost:3000/users/employers/
+Content-Type: application/json
+
+{
+    "email": "thaicorp@gmail.com",
+    "password": "thai",
+    "fullname": "thai's corp",
+    "organization": "thaicorp",
+    "location": {
+        "address": "1000 N 4th St",
+        "city": "Fairfield",
+        "state": "IA",
+        "country": "USA"
+    }
+}
+
+###
+PATCH  http://localhost:3000/users/employers/62edaa45b56a850c2ece2841
+Content-Type: application/json
+
+{
+    "email": "thaicorp@gmail.com",
+    "password": "thaiupdated",
+    "fullname": "thai's corp updated",
+    "organization": "thaicorp",
+    "location": {
+        "address": "1000 N 4th St",
+        "city": "Fairfield",
+        "state": "IA",
+        "country": "USA"
+    }
+}
+
+### ---------------------------SEEKER
+GET http://localhost:3000/users/seekers/62edad4769c90baece555035
+
+###
+POST  http://localhost:3000/users/seekers/
+Content-Type: application/json
+
+{
+    "email": "seeker1@gmail.com",
+    "password": "seeker1",
+    "fullname": "seeker1",
+    "resume": "/abc/def/seeker1.pdf",      
+    "education": "Master of computer science",  
+    "skill_set": ["Java", "Nodejs", "Angular"],
+    "yoe": "12",
+    "status": "active"
+}
+
+###
+PATCH  http://localhost:3000/users/seekers/62edad4769c90baece555035
+Content-Type: application/json
+
+{
+    "email": "seeker1@gmail.com",
+    "password": "seeker1updated",
+    "fullname": "seeker1updated",
+    "resume": "/abc/def/seeker1.pdf",      
+    "education": "Master of computer science",  
+    "skill_set": ["Java", "Nodejs", "Angular"],
+  "yoe": "12",
+    "status": "active"
+}
+
+### ---------------------------JOBS
+GET http://localhost:3000/jobs/62edc435f07ec4883d6925ec
+
+###
+POST  http://localhost:3000/jobs/
+Content-Type: application/json
+
+{
+    "title": "java developer",
+    "description": "senior java developer",
+    "skills": ["java", "spring", "OOP"],
+    "job_type": "full-time",
+    "location": {
+        "address": "1000 N 4th St",
+        "city": "Fairfield",
+        "state": "IA",
+        "country": "USA"
+    },
+    "created_by": "62edaa45b56a850c2ece2842",
+    "employer": {
+        "_id": "62edaa45b56a850c2ece2842",
+        "email": "nguyencorp@gmail.com",
+        "fullname": "nguyen's corp",
+        "organization": "nguyencorp"
+    },
+    "applied_by": [
+        {
+            "_id": "62edad4769c90baece555035",
+            "email": "seeker1@gmail.com",
+            "fullname": "seeker1updated",
+            "resume": "/abc/def/seeker1.pdf",
+            "education": "Master of computer science",      
+            "skill_set": ["java", "spring", "OOP"],
+            "yoe": "12",
+            "status": "submited"
+        },
+        {
+            "_id": "62edad4769c90baece555039",
+            "email": "seeker2@gmail.com",
+            "fullname": "seeker2",
+            "resume": "/abc/def/seeker2.pdf",      
+            "education": "Master of computer science",  
+            "skill_set": ["java", "spring", "OOP"],
+            "yoe": "12",
+            "status": "submited"
+        }
+    ]
+}
+
+###
+PATCH  http://localhost:3000/jobs/62edc435f07ec4883d6925ec
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJlZGNjZjg2MDAyOWZhZTM2ODM1NjBhIiwiZnVsbG5hbWUiOiJuZ3V5ZW4ncyBjb3JwIiwiZW1haWwiOiJuZ3V5ZW5jb3JwQGdtYWlsLmNvbSIsInJvbGUiOiJlbXBsb3llciIsImlhdCI6MTY1OTc1ODQ5NH0.Vn3gqjoNTj0RbOZ2Nir4d1V9OdnfbFRRIV2n7SQEU7o
+
+{
+    "title": "java developer",
+    "description": "senior java developer with more than 10 years of experience",
+    "skills":["java", "spring", "OOP"],
+    "job_type": "full-time",
+    "location": {
+        "address": "1000 N 4th St",
+        "city": "Fairfield",
+        "state": "IA",
+        "country": "USA"
+    },
+    "created_by": "62edaa45b56a850c2ece2842",
+    "employer": {
+        "_id": "62edaa45b56a850c2ece2842",
+        "email": "nguyencorp@gmail.com",
+        "fullname": "nguyen's corp",
+        "organization": "nguyencorp"
+    },
+    "applied_by": [
+        {
+            "_id": "62edad4769c90baece555035",
+            "email": "seeker1@gmail.com",
+            "fullname": "seeker1updated",
+            "resume": "/abc/def/seeker1.pdf",
+            "education": "Master of computer science",      
+            "skill_set": ["java", "spring", "OOP"],
+            "yoe": "12",
+            "status": "submited"
+        },
+        {
+            "_id": "62edad4769c90baece555039",
+            "email": "seeker2@gmail.com",
+            "fullname": "seeker2",
+            "resume": "/abc/def/seeker2.pdf",      
+            "education": "Master of computer science",  
+            "skill_set": ["java", "spring", "OOP"],
+            "yoe": "12",
+            "status": "submited"
+        }
+    ]
+}
+
+###
+POST  http://localhost:3000/users/login/
+Content-Type: application/json
+
+{
+    "email": "nguyencorp@gmail.com",
+    "password": "nguyen"
+}

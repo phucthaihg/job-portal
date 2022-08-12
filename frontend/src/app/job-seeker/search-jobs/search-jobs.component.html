@@ -1,0 +1,81 @@
+<div id="search-job-container">
+    <form [formGroup]="searchJobForm" (ngSubmit)="search()" autocomplete="off">
+      <div id="search-bar">
+        <div class="search-field">
+          <mat-form-field appearance="outline">
+            <mat-label>What</mat-label>
+            <input type="text" matInput placeholder="Ex. Java" formControlName="keyword">
+          </mat-form-field>
+        </div>
+        <div class="search-field search-field-location">
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input type="text" matInput placeholder="Ex. Fairfield" formControlName="city">
+          </mat-form-field>
+        </div>
+        <div class="search-field search-field-location">
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input type="text" matInput placeholder="Ex. Iowa" formControlName="state">
+          </mat-form-field>
+        </div>
+      <div class="search-button">
+        <button class="btn-search" mat-raised-button color="primary" type="submit">Search</button>
+      </div>
+      </div>
+    </form>
+
+  <div id="search-result">
+
+    <div id="job-result">
+      <mat-card class="job-card" *ngFor="let job of (jobs$ | async)?.data" (click)="showDetail(job._id)">
+        <mat-card-title-group>
+          <mat-card-title>{{job.title}}</mat-card-title>
+          <mat-card-subtitle>{{job.job_type}}</mat-card-subtitle>
+          <mat-card-subtitle>{{job.location.city}}-{{job.location.state}}</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content>
+          <p class="job-short-description" [innerHtml]="job.description"></p>
+        </mat-card-content>
+      </mat-card>
+      <mat-paginator *ngIf="showPaginator" [length]="(jobs$ | async)?.total"
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 25, 100]"
+                     aria-label="Select page"
+                      (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+
+    <div id="job-detail" *ngIf="job$ | async as job">
+      <div class="job-box apply-job-box">
+        <p class="job-heading">{{job.title}}</p>
+        <button class="btn-apply-job" mat-raised-button color="primary" (click)="apply(job._id)">Apply Now</button>
+      </div>
+
+      <div class="job-box job-detail">
+        <p class="job-heading">Job details</p>
+
+        <div class="job-info-item">
+          <span class="job-sub-heading">Salary</span><br/>
+          <span>{{job.salary}}</span>
+        </div>
+
+        <div class="job-info-item">
+          <span class="job-sub-heading">Preferred Skills</span><br/>
+          <span>{{job.skills | stringsJoiner }}</span>
+        </div>
+
+        <div class="job-info-item">
+          <span class="job-sub-heading">Job Type</span> <br/>
+          <span>{{job.job_type}}</span>
+        </div>
+      </div>
+
+      <div class="job-box">
+        <p class="job-heading">Full Job Description</p>
+        <span [innerHTML]="job.description"></span>
+      </div>
+
+    </div>
+  </div>
+</div>

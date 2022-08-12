@@ -1,0 +1,18 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+#nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+header {
+  border-bottom: 1px solid #c6c6c6;
+  box-shadow: rgb(0 0 0 / 20%) 0px 0px 2px;
+}
+
+.welcome {
+  padding-top: 0.8rem;
+}

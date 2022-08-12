@@ -1,0 +1,99 @@
+
+#search-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.search-field {
+  flex: 50%;
+  margin-right: 0.5rem;
+}
+
+.search-field-location {
+  flex: 10%;
+}
+
+.search-button {
+  flex: 15%;
+}
+
+.search-button button {
+  margin-top: 0.2rem;
+  padding: 0.5rem 5rem 0.5rem 5rem;
+}
+
+
+#search-bar mat-form-field {
+  width: 100%;
+}
+
+
+.job-card {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+#search-result {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+#job-result {
+  width: 30%;
+  overflow-y: scroll;
+  max-height: 50rem;
+}
+
+p.job-short-description {
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 1rem;
+  max-height: 10rem;
+
+}
+
+#job-detail {
+  width: 67%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 0 1rem 1rem 1rem;
+  overflow-y: scroll;
+  max-height: 50rem;
+}
+
+.job-heading {
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.job-sub-heading {
+  font-weight: 600;
+}
+
+.job-info-item {
+  padding-bottom: 1rem;
+}
+
+.btn-apply-job {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.job-box {
+  border-bottom: 1px solid #c6c6c6;
+  padding: 1rem;
+}
+
+.apply-job-box {
+  padding-top: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: #FFF;
+}

@@ -1,0 +1,106 @@
+<div id="login-container">
+  <mat-card>
+    <mat-card-title class="login-heading">Register Account</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="signUpForm" (ngSubmit)="signup()" autocomplete="off">
+
+        <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Role</mat-label>
+          <mat-select (selectionChange)="onRoleChange($event)" formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Full name" formControlName="fullname">
+          </mat-form-field>
+        </p>
+
+        <div *ngIf="isSeeker">
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Skills" formControlName="skills">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Year of experience" formControlName="yoe">
+            </mat-form-field>
+          </p>
+
+          <p>
+              <label for="resume">Resume</label>
+              <input
+                formControlName="file"
+                id="resume"
+                type="file"
+                class="resume-upload"
+                (change)="onFileChange($event)">
+
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Education" formControlName="education">
+            </mat-form-field>
+          </p>
+        </div>
+        <div *ngIf="!isSeeker">
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Organization" formControlName="organization">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Address" formControlName="address">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="City" formControlName="city">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="State" formControlName="state">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Country" formControlName="country">
+            </mat-form-field>
+          </p>
+        </div>
+        <div class="button">
+          <a mat-raised-button [routerLink]="['/', 'login']">Login</a>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!this.signUpForm.valid">Sign Up</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

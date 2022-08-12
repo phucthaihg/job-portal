@@ -1,0 +1,25 @@
+<header *ngIf="role === 'seeker' || role === 'employer'">
+<mat-toolbar>
+  <div id="nav-container">
+    <div *ngIf="role === 'seeker'">
+      <a mat-button><img src="../../../assets/img/logo.png" style="height: 3.6rem" /> </a>
+      <a mat-button [routerLink]="['/', 'seekers','search-jobs']">Search Jobs</a>
+      <a mat-button [routerLink]="['/', 'seekers' ,'my-jobs']">My Jobs</a>
+      <a mat-button [routerLink]="['/', 'seeker-profile']">My Profile</a>
+    </div>
+
+    <div *ngIf="role === 'employer'">
+      <a mat-button><img src="../../../assets/img/logo.png" style="height: 3.6rem" /> </a>
+      <a mat-button [routerLink]="['/', 'employers', 'profile', 'view']">My Profile</a>
+      <a mat-button [routerLink]="['/', 'employers']">Dashboard</a>
+    </div>
+    <div class="welcome" *ngIf="role === 'seeker' || role === 'employer'">
+      <a mat-button>Welcome, {{fullname}}!</a>
+      <a mat-button color="warn" (click)="logout()">Logout</a>
+    </div>
+
+  </div>
+</mat-toolbar>
+</header>
+
+

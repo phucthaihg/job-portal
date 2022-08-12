@@ -1,0 +1,187 @@
+<div id="container">
+  <mat-card>
+    <mat-card-title *ngIf="!disableSelect">Edit Job</mat-card-title>
+    <mat-card-title *ngIf="disableSelect">View Job</mat-card-title>
+    <mat-card-content>
+      <div [formGroup]="form" autocomplete="off">
+
+        <p>
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input type="text" matInput placeholder="" formControlName="title" [readonly]="disableSelect">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-label>Description</mat-label>
+          <ckeditor formControlName="description" [editor]="Editor" [disabled]="disableSelect"></ckeditor>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Skills</mat-label>
+            <input type="text" matInput placeholder="" formControlName="skills" [readonly]="disableSelect">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" (selectionChange)="refreshStates()" [disabled]="disableSelect">
+              <mat-option *ngFor="let country of countries"
+                          [value]="country.name" >
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+
+        <p>
+          <mat-form-field >
+            <mat-label>State</mat-label>
+            <mat-select formControlName="state" (selectionChange)="refreshCities()" [disabled]="disableSelect">
+              <mat-option *ngFor="let state of states"
+                          [value]="state.name" >
+                {{state.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field >
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" [disabled]="disableSelect">
+              <mat-option *ngFor="let city of cities"
+                          [value]="city" >
+                {{city}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Salary</mat-label>
+            <input type="text" matInput placeholder="" formControlName="salary" [readonly]="disableSelect">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field >
+            <mat-label>Job Type</mat-label>
+            <mat-select formControlName="job_type" [disabled]="disableSelect">
+              <mat-option *ngFor="let job_type of jobTypes"
+                          [value]="job_type.value" >
+                {{job_type.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" [disabled]="disableSelect">
+              <mat-option *ngFor="let status of jobStatuses" [value]="status.value" >
+                {{status.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <div>
+          <p>List of Applicants</p>
+          <table mat-table [dataSource]="seekers" class="mat-elevation-z0">
+
+            <ng-container matColumnDef="fullname">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="skills">
+              <th mat-header-cell *matHeaderCellDef> Skills </th>
+              <td mat-cell *matCellDef="let element"> {{element.skill_set}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="yoe">
+              <th mat-header-cell *matHeaderCellDef> Experience </th>
+              <td mat-cell *matCellDef="let element"> {{element.yoe}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="application_status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element" >
+                <mat-select [(value)]="element.status" [disabled]="disableSelect">
+                    <mat-option *ngFor="let application_status of applicationStatuses"
+                                [value]="application_status.value" >
+                      {{application_status.value}}
+                    </mat-option>
+                  </mat-select>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              (click)="clickedApplicant = row"
+              [class.demo-row-is-clicked]="!clickedApplicant"
+              *matRowDef="let row; columns: displayedColumns;"
+            ></tr>
+
+          </table>
+
+        </div>
+
+        <div class="button">
+          <button mat-raised-button color="primary" type="button" (click)="cancel()">Cancel</button>
+          <button mat-raised-button color="primary" type="button" (click)="editEJob()" *ngIf="!disableSelect" [disabled]="!form.valid">Update</button>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+
+
+<!--div class="container">
+
+
+  <table mat-table [dataSource]="applicants" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Name. </th>
+      <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="education">
+      <th mat-header-cell *matHeaderCellDef> Education </th>
+      <td mat-cell *matCellDef="let element"> {{element.education}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="skills">
+      <th mat-header-cell *matHeaderCellDef> Skills </th>
+      <td mat-cell *matCellDef="let element"> {{element.skills}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="yoe">
+      <th mat-header-cell *matHeaderCellDef> YOE </th>
+      <td mat-cell *matCellDef="let element"> {{element.yoe}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" type="button" (click)="viewProfile()">profile</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="applicantColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: applicantColumns;"></tr>
+  </table>
+</div-->
+

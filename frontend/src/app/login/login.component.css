@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+#login-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.login-heading {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+#logo {
+  margin: 3rem auto;
+  display: block;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 25rem;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+
+  justify-content: space-between;
+}

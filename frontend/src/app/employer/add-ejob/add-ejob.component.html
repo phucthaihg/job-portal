@@ -1,0 +1,101 @@
+<div id="container">
+  <mat-card>
+    <mat-card-title>Create A Job</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" autocomplete="off">
+
+        <p>
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input type="text" matInput placeholder="" formControlName="title">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-label>Description</mat-label>
+          <ckeditor formControlName="description" [editor]="Editor"></ckeditor>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Skills</mat-label>
+            <input type="text" matInput placeholder="" formControlName="skills">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field >
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" (selectionChange)="refreshStates()">
+              <mat-option *ngFor="let country of countries"
+                          [value]="country.name" >
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field >
+            <mat-label>State</mat-label>
+            <mat-select formControlName="state" (selectionChange)="refreshCities()">
+              <mat-option *ngFor="let state of states"
+                          [value]="state.name" >
+                {{state.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field >
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" >
+              <mat-option *ngFor="let city of cities"
+                          [value]="city" >
+                {{city}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Salary</mat-label>
+            <input type="text" matInput placeholder="" formControlName="salary">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Job Type</mat-label>
+            <mat-select formControlName="job_type">
+              <mat-option *ngFor="let job_type of jobTypes"
+                          [value]="job_type.value" >
+                {{job_type.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option *ngFor="let status of jobStatuses" [value]="status.value">
+                {{status.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+
+        <div class="button">
+          <button mat-raised-button color="primary" type="button" (click)="cancel()">Cancel</button>
+          <button mat-raised-button color="primary" type="button" (click)="addEJob()" [disabled]="!form.valid">Create</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
